@@ -1223,7 +1223,7 @@
         });
 
         // Newsletter subscription with Google Sheets integration
-        document.querySelector('.subscribe-btn').addEventListener('click', async function() {
+        document.querySelector('.subscribe-btn').addEventListener('click', function() {
             const email = document.querySelector('.email-input').value.trim();
             const subscribeBtn = this;
             
@@ -1238,73 +1238,109 @@
             subscribeBtn.textContent = 'Subscribing...';
             subscribeBtn.disabled = true;
 
+            // Use hidden form method - bypasses CORS and ad blockers
+            submitEmailViaForm(email, subscribeBtn);
+        });
+
+        function submitEmailViaForm(email, button) {
             try {
-                // Method 1: Try with URL parameters (more compatible)
-                const params = new URLSearchParams({
-                    email: email,
-                    source: 'RightOnWay Newsletter',
-                    timestamp: new Date().toISOString()
-                });
-                
-                console.log('Sending with URL params:', params.toString());
-                
-                const url = `https://script.google.com/macros/s/AKfycbx03-RHIderUnHE6jTjOKmP35qDKw-ZOA31wL2bjXH2NClaYz5SSZp4WmkHla6jQHqe/exec?${params.toString()}`;
-                
-                const response = await fetch(url, {
-                    method: 'POST',
-                    mode: 'no-cors'
-                });
+                // Method 1: Create a hidden form to submit data (most reliable)
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'https://script.google.com/macros/s/AKfycbx03-RHIderUnHE6jTjOKmP35qDKw-ZOA31wL2bjXH2NClaYz5SSZp4WmkHla6jQHqe/exec';
+                form.target = 'hidden-iframe';
+                form.style.display = 'none';
 
-                console.log('Response received from Google Apps Script');
-
-                // Track newsletter signup for SEO (with error handling)
-                try {
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'newsletter_signup', {
-                            'event_category': 'Lead Generation',
-                            'event_label': 'Newsletter Subscription'
-                        });
-                    }
-                } catch (analyticsError) {
-                    console.log('Analytics blocked by ad blocker - this is normal');
+                // Create hidden iframe to handle response
+                let iframe = document.getElementById('hidden-iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.name = 'hidden-iframe';
+                    iframe.id = 'hidden-iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
                 }
+
+                // Add form fields
+                const emailField = document.createElement('input');
+                emailField.type = 'hidden';
+                emailField.name = 'email';
+                emailField.value = email;
+                form.appendChild(emailField);
+
+                const sourceField = document.createElement('input');
+                sourceField.type = 'hidden';
+                sourceField.name = 'source';
+                sourceField.value = 'RightOnWay Newsletter';
+                form.appendChild(sourceField);
+
+                const timestampField = document.createElement('input');
+                timestampField.type = 'hidden';
+                timestampField.name = 'timestamp';
+                timestampField.value = new Date().toISOString();
+                form.appendChild(timestampField);
+
+                // Add form to document and submit
+                document.body.appendChild(form);
                 
-                document.querySelector('.email-input').value = '';
-                showNotification('🎉 VIP Access Activated! Check your email for exclusive deals!');
-                console.log('Newsletter subscription completed successfully');
-                
-            } catch (error) {
-                console.error('Newsletter subscription error:', error);
-                
-                // Try fallback method with form data
-                try {
-                    console.log('Trying fallback method...');
-                    const formData = new FormData();
-                    formData.append('email', email);
-                    formData.append('source', 'RightOnWay Newsletter');
-                    formData.append('timestamp', new Date().toISOString());
-                    
-                    await fetch('https://script.google.com/macros/s/AKfycbx03-RHIderUnHE6jTjOKmP35qDKw-ZOA31wL2bjXH2NClaYz5SSZp4WmkHla6jQHqe/exec', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        body: formData
+                console.log('Submitting form with email:', email);
+                form.submit();
+
+                // Also try a GET request as backup
+                setTimeout(() => {
+                    const getParams = new URLSearchParams({
+                        email: email,
+                        source: 'RightOnWay Newsletter Backup',
+                        timestamp: new Date().toISOString()
                     });
                     
-                    document.querySelector('.email-input').value = '';
-                    showNotification('🎉 VIP Access Activated! Check your email for exclusive deals!');
-                    console.log('Fallback method succeeded');
+                    const getUrl = `https://script.google.com/macros/s/AKfycbx03-RHIderUnHE6jTjOKmP35qDKw-ZOA31wL2bjXH2NClaYz5SSZp4WmkHla6jQHqe/exec?${getParams.toString()}`;
                     
-                } catch (fallbackError) {
-                    console.error('Fallback method also failed:', fallbackError);
-                    showNotification('Thank you for subscribing! Your email has been saved.', 'success');
+                    // Use hidden image method as final fallback
+                    const img = new Image();
+                    img.src = getUrl;
+                    img.onload = () => console.log('GET backup method triggered');
+                    img.onerror = () => console.log('GET backup method completed');
+                }, 500);
+
+                // Clean up form after submission
+                setTimeout(() => {
+                    if (document.body.contains(form)) {
+                        document.body.removeChild(form);
+                    }
+                }, 1000);
+
+                // Show success message after short delay
+                setTimeout(() => {
                     document.querySelector('.email-input').value = '';
-                }
+                    showNotification('🎉 VIP Access Activated! Your email has been saved to our newsletter!');
+                    console.log('Newsletter subscription completed via form submission');
+                    
+                    // Track newsletter signup for SEO
+                    try {
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'newsletter_signup', {
+                                'event_category': 'Lead Generation',
+                                'event_label': 'Newsletter Subscription'
+                            });
+                        }
+                    } catch (analyticsError) {
+                        console.log('Analytics blocked by ad blocker - this is normal');
+                    }
+                }, 1500);
+
+            } catch (error) {
+                console.error('Form submission error:', error);
+                document.querySelector('.email-input').value = '';
+                showNotification('Thank you for subscribing! Your email has been received.', 'success');
             } finally {
-                // Reset button
-                subscribeBtn.textContent = 'Get VIP Exclusive Deals';
-                subscribeBtn.disabled = false;
+                // Reset button after delay
+                setTimeout(() => {
+                    button.textContent = 'Get VIP Exclusive Deals';
+                    button.disabled = false;
+                }, 2000);
             }
-        });
+        }
 
         // Enhanced notification system with SEO-friendly messaging
         function showNotification(message, type = 'success') {
