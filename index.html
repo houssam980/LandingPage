@@ -1224,10 +1224,12 @@
 
         // Newsletter subscription with Google Sheets integration
         document.querySelector('.subscribe-btn').addEventListener('click', async function() {
-            const email = document.querySelector('.email-input').value;
+            const email = document.querySelector('.email-input').value.trim();
             const subscribeBtn = this;
             
-            if (!email || !email.includes('@')) {
+            console.log('Newsletter submission attempt with email:', email);
+            
+            if (!email || !email.includes('@') || !email.includes('.')) {
                 alert('Please enter a valid email address to receive exclusive deals and VIP access.');
                 return;
             }
@@ -1237,6 +1239,14 @@
             subscribeBtn.disabled = true;
 
             try {
+                const payload = {
+                    email: email,
+                    timestamp: new Date().toISOString(),
+                    source: 'RightOnWay Newsletter'
+                };
+                
+                console.log('Sending payload:', payload);
+                
                 // Send email to Google Sheets
                 const response = await fetch('https://script.google.com/macros/s/AKfycbyuuZKbT8tLqYTjvZkNswJbZb2vY4j9lYoqRuQ7ErkWmMDiw5ofdDWpN9D5mFUVwhH8/exec', {
                     method: 'POST',
@@ -1244,12 +1254,10 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        timestamp: new Date().toISOString(),
-                        source: 'RightOnWay Newsletter'
-                    })
+                    body: JSON.stringify(payload)
                 });
+
+                console.log('Response received from Google Apps Script');
 
                 // Track newsletter signup for SEO (with error handling)
                 try {
@@ -1265,6 +1273,7 @@
                 
                 document.querySelector('.email-input').value = '';
                 showNotification('🎉 VIP Access Activated! Check your email for exclusive deals!');
+                console.log('Newsletter subscription completed successfully');
                 
             } catch (error) {
                 console.error('Newsletter subscription error:', error);
