@@ -1104,17 +1104,6 @@
 
         // Remove duplicate scroll handlers - optimization handled above
 
-        // Newsletter subscription with enhanced performance
-        document.querySelector('.subscribe-btn').addEventListener('click', function() {
-            const email = document.querySelector('.email-input').value;
-            if (email) {
-                alert('Thank you for subscribing! You will receive exclusive offers and updates.');
-                document.querySelector('.email-input').value = '';
-            } else {
-                alert('Please enter a valid email address.');
-            }
-        });
-
         // Shopping cart simulation
         document.querySelectorAll('.product-button').forEach(button => {
             button.addEventListener('click', function(e) {
@@ -1262,12 +1251,16 @@
                     })
                 });
 
-                // Track newsletter signup for SEO
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'newsletter_signup', {
-                        'event_category': 'Lead Generation',
-                        'event_label': 'Newsletter Subscription'
-                    });
+                // Track newsletter signup for SEO (with error handling)
+                try {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'newsletter_signup', {
+                            'event_category': 'Lead Generation',
+                            'event_label': 'Newsletter Subscription'
+                        });
+                    }
+                } catch (analyticsError) {
+                    console.log('Analytics blocked by ad blocker - this is normal');
                 }
                 
                 document.querySelector('.email-input').value = '';
@@ -1279,7 +1272,7 @@
                 document.querySelector('.email-input').value = '';
             } finally {
                 // Reset button
-                subscribeBtn.textContent = 'Get VIP Access';
+                subscribeBtn.textContent = 'Get VIP Exclusive Deals';
                 subscribeBtn.disabled = false;
             }
         });
