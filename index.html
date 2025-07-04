@@ -260,11 +260,11 @@
             font-size: 1.1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 12px rgba(45, 55, 72, 0.3);
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both, trembling 2s infinite 1s;
+            animation: trembling 2s infinite;
         }
 
         .cta-button:hover {
-            animation: none;
+            animation: trembling 2s infinite;
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
             background: #1a202c;
@@ -680,11 +680,11 @@
         }
 
         .cta-button {
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-2px);
         }
 
         /* Loading animation for better perceived performance */
@@ -1138,26 +1138,7 @@
             }, { passive: true });
         });
 
-        // Dynamic typing effect for hero text
-        function typeWriter(element, text, speed = 50) {
-            let i = 0;
-            element.innerHTML = '';
-            function typing() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(typing, speed);
-                }
-            }
-            typing();
-        }
-
-        // Initialize typing effect after page load
-        window.addEventListener('load', function() {
-            const heroTitle = document.querySelector('.hero h1');
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 100);
-        });
+        // Removed typing effect - hero title is now stable
 
         // Enhanced SEO and Analytics tracking - removed preventDefault to allow normal link behavior
         document.querySelectorAll('.product-button, .cta-button').forEach(button => {
